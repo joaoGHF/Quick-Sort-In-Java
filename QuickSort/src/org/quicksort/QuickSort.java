@@ -1,14 +1,31 @@
 package org.quicksort;
 
+/**
+ * <p>
+ * The {@code QuickSort} class has the private method {@code separate()}, the
+ * public method {@code quickSort()} and the {@code main} method.
+ * Sort an array of integers using the sort algorithm {@code Quick Sort}.
+ * </p>
+ */
 public class QuickSort {
-    public static void main(String[] args) throws Exception {
-        final int quantity = 100;
+    /**
+     * <p>
+     * The main method create and initialize an array of integer with random values,
+     * print your content before and after the sorting, sort the array and finnaly
+     * print the sorting time in ms.
+     * </p>
+     * 
+     * @param args are not used in this program
+     */
+    public static void main(String[] args) {
+        final int quantity = 10;
         int[] array = new int[quantity];
 
         for (int i = 0; i < array.length; i++) {
             array[i] = (int) (Math.random() * quantity);
         }
 
+        System.out.println("Ramdom array:");
         for (int i : array) {
             System.out.print(i + "  ");
         }
@@ -21,6 +38,7 @@ public class QuickSort {
 
         long time_term = System.currentTimeMillis();
 
+        System.out.println("Sorted array");
         for (int i : array) {
             System.out.print(i + "  ");
         }
@@ -30,18 +48,40 @@ public class QuickSort {
         System.out.println("Sorting time: " + (time_term - time_init) + "ms");
     }
 
-    public static void quickSort(int[] array, int init, int fin) {
-        if (init < fin) {
-            int positionPivot = separate(array, init, fin);
+    /**
+     * <p>
+     * Method resposable to recursively sort the array internaly until all elements
+     * are sorted.
+     * </p>
+     * 
+     * @param array an array of type integer to be sorted
+     * @param init  the init of the sorting
+     * @param end   the end of the sorting
+     */
+    public static void quickSort(int[] array, int init, int end) {
+        if (init < end) {
+            int positionPivot = separate(array, init, end);
             quickSort(array, init, positionPivot - 1);
-            quickSort(array, positionPivot + 1, fin);
+            quickSort(array, positionPivot + 1, end);
+
         }
     }
 
-    public static int separate(int[] array, int init, int fin) {
+    /**
+     * <p>
+     * In the process of separating lists, this method is performed until it returns
+     * a pivot (the divisible element between the two lists).
+     * </p>
+     * 
+     * @param array an array of type integer to be sorted
+     * @param init the init of separating
+     * @param end the end of separating
+     * @return the pivot of type {@code int}
+     */
+    private static int separate(int[] array, int init, int end) {
         int pivot = array[init];
         int i = init + 1;
-        int f = fin;
+        int f = end;
         while (i <= f) {
             if (array[i] <= pivot) {
                 i++;
