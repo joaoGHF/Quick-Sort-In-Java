@@ -32,11 +32,11 @@ public class QuickSort {
 
         System.out.println("\n\n");
 
-        long time_init = System.currentTimeMillis();
+        long timeInit = System.currentTimeMillis();
 
         quickSort(array, 0, array.length - 1);
 
-        long time_term = System.currentTimeMillis();
+        long timeTerm = System.currentTimeMillis();
 
         System.out.println("Sorted array");
         for (int i : array) {
@@ -45,7 +45,7 @@ public class QuickSort {
 
         System.out.println("\n\n");
 
-        System.out.println("Sorting time: " + (time_term - time_init) + "ms");
+        System.out.println("Sorting time: " + (timeTerm - timeInit) + "ms");
     }
 
     /**
